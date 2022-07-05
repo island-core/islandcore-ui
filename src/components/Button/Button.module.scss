@@ -1,1 +1,8 @@
-.button {}
+.button {
+    &__red {}
+    &__orange {}
+    &__yellow {}
+    &__green {}
+    &__blue {}
+    &__purple {}
+}
