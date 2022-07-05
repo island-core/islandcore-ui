@@ -1,0 +1,31 @@
+@mixin color_button($default) {
+    background-color: $default;
+
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+.button {
+    /* Default button styles */ 
+
+    border: none;
+    padding: 10px 15px;
+
+    /* Prop: variant */
+
+    .button-red {@include color_button(var(--color-red));}
+    .button-orange {@include color_button(var(--color-orange));}
+    .button-yellow {@include color_button(var(--color-yellow));}
+    .button-green {@include color_button(var(--color-green));}
+    .button-blue {@include color_button(var(--color-blue));}
+    .button-purple {@include color_button(var(--color-purple));}
+
+    /* Prop: size */
+
+    .button-large {}
+    .button-medium {}
+    .button-small {}
+
+    /* Prop: */
+}
