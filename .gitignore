@@ -1,3 +1,9 @@
+# Env
+
 .vscode
 node_modules
 dist
+
+# Tesing
+
+__snapshots__
