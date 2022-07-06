@@ -1,27 +1,39 @@
-import { Color } from "@/types/color";
 import classNames from "classnames";
-import React, { CSSProperties, FC } from "react";
+import React, { FC } from "react";
+import { Color } from "../../types/color";
 import buttonStyle from "./Button.module.scss";
 
+export type ButtonSize = "small" | "medium" | "large";
 export interface ButtonProps extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
-    variant?: Color
+    variant?: Color,
+    size?: ButtonSize,
+    round?: boolean,
+    ghost?: boolean
 }
 
-const DEFAULT_CLASS_LIST: Array<string> = [buttonStyle.button];
-
 export const Button: FC<ButtonProps> = (props) => {
-    const {children, variant, style, className, ...restProps} = props as ButtonProps;
+    const {
+        children,
+        className,
+        style,
+        variant = "blue",
+        size = "medium",
+        round = false,
+        ghost = false,
+        ...restProps
+    } = props as ButtonProps;
 
+    const _style = style || {};
     const _className = classNames(
-        DEFAULT_CLASS_LIST.join(" "),
-        `${buttonStyle.button}-${variant}` && variant,
-        className
+        buttonStyle[`button`],
+        buttonStyle[`button--variant-${variant}`],
+        buttonStyle[`button--size-${size}`],
+        {
+            [buttonStyle[`button--round`]]: round,
+            [buttonStyle[`button--ghost-${variant}`]]: ghost
+        }
     );
-
-    console.log(DEFAULT_CLASS_LIST);
-
-    const _style: CSSProperties = style || {};    
-
+    
     return (
         <button 
             className={_className}
