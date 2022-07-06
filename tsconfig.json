@@ -13,12 +13,7 @@
     "outDir": "dist/esm",
     "sourceMap": true,
     "strict": true,
-    "target": "es6",
-    "paths": {
-      "@/components/*": ["./src/components/*"],
-      "@/hooks/*": ["./src/hooks/*"],
-      "@/types/*": ["./src/types/*"]
-    }
+    "target": "es6"
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"]
 }
