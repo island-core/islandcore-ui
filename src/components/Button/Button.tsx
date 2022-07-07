@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import React, { FC } from "react";
 import { Color } from "../../types/color";
-import buttonStyle from "./Button.module.scss";
+import "./Button.scss";
 
 export type ButtonSize = "small" | "medium" | "large";
 export interface ButtonProps extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
@@ -16,21 +16,21 @@ export const Button: FC<ButtonProps> = (props) => {
         children,
         className,
         style,
+        round,
+        ghost,
         variant = "blue",
         size = "medium",
-        round = false,
-        ghost = false,
         ...restProps
     } = props as ButtonProps;
 
     const _style = style || {};
     const _className = classNames(
-        buttonStyle[`button`],
-        buttonStyle[`button--variant-${variant}`],
-        buttonStyle[`button--size-${size}`],
+        `button`,
+        `button--variant-${variant}`,
+        `button--size-${size}`,
         {
-            [buttonStyle[`button--round`]]: round,
-            [buttonStyle[`button--ghost-${variant}`]]: ghost
+            [`button--round`]: round,
+            [`button--ghost-${variant}`]: ghost,
         }
     );
     

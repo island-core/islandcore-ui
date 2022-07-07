@@ -22,6 +22,12 @@ Default.args = {
     ..._defaultProps
 };
 
+export const Disabled = Template.bind({});
+Disabled.args = {
+    ..._defaultProps,
+    disabled: true
+};
+
 export const Small = Template.bind({});
 Small.args = {
     ..._defaultProps,
