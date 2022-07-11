@@ -1,1 +1,0 @@
-export const createDefaultProps = <T extends object>(props: T): {[key in keyof T]: typeof props[key] } => props;
