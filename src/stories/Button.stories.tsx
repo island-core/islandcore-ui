@@ -6,48 +6,44 @@ import { Button, ButtonProps } from '../components/Button';
 export default {
     title: 'Components/Button',
     component: Button,
+    args: {
+        children: "Button"        
+    }
 } as ComponentMeta<typeof Button>;
-
-
-const _defaultProps = {
-    children: "Button"
-} as ButtonProps;
 
 
 const Template: ComponentStory<typeof Button> = (args: ButtonProps) => <Button {...args} />;
 
 
 export const Default = Template.bind({});
-Default.args = {
-    ..._defaultProps
-};
+Default.args = {};
 
 export const Disabled = Template.bind({});
 Disabled.args = {
-    ..._defaultProps,
     disabled: true
 };
 
 export const Small = Template.bind({});
 Small.args = {
-    ..._defaultProps,
     size: "small"
+};
+
+export const Medium = Template.bind({});
+Medium.args = {
+    size: "medium"
 };
 
 export const Large = Template.bind({});
 Large.args = {
-    ..._defaultProps,
     size: "large"
 };
 
 export const Round = Template.bind({});
 Round.args = {
-    ..._defaultProps,
     round: true
 };
 
 export const Ghost = Template.bind({});
 Ghost.args = {
-    ..._defaultProps,
     ghost: true
 };
