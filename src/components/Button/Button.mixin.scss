@@ -1,0 +1,73 @@
+$small_button: 0.8rem;
+$medium_button: 1rem;
+$large_button: 1.2rem;
+
+@mixin button_default {
+    display: block;
+    position: relative;
+
+    padding: 8px 19px;
+
+    color: var(--color-text);
+    background-color: var(--color-gray-40);
+
+    border: none;
+    border-radius: 5px;
+
+    font-family: var(--font-family-secondary);
+    font-weight: 500 !important;
+    font-size: 1rem;
+    line-height: var(--line-height);
+
+    transition-duration: .3s;
+        
+    &:hover {
+        cursor: pointer;
+        opacity: 0.85;
+    }
+    
+    &:disabled {
+        opacity: 0.7;
+        
+        &:hover {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+    }
+}
+
+@mixin button_variant($color) {
+    background-color: $color;
+    color: var(--color-gray-0);
+    
+    @include set_focus_active_styles($color);
+}
+
+@mixin set_focus_active_styles($color) {
+    &:focus,
+    &:active,
+    &:focus:active {
+        outline: none;
+        box-shadow: 0 0 0 2px var(--color-gray-0),
+                    0 0 0 4px var($color);
+    }
+}
+
+@mixin button_size($font_size) {
+    font-size: $font_size;
+}
+
+@mixin button_round {
+    border-radius: 30px;
+}
+
+@mixin button_ghost($background_color) {
+    box-shadow: inset 0 0 0 2px $background_color;
+    background-color: var(--color-gray-0);
+    color: var(--color-text);
+    
+    &:hover:not(:disabled) {
+        background-color: $background_color;
+        color: var(--color-gray-0);
+    }
+}

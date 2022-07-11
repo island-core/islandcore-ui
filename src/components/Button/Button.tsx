@@ -1,46 +1,67 @@
-import classNames from "classnames";
-import React, { FC } from "react";
+import React, { ButtonHTMLAttributes, DetailedHTMLProps, FC } from "react";
 import { Color } from "../../types/color";
-import buttonStyle from "./Button.module.scss";
+import { composeClassName } from "../../utils/className";
+import { ButtonClose, ButtonCloseProps } from "./Close/ButtonClose";
 
-export type ButtonSize = "small" | "medium" | "large";
-export interface ButtonProps extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
-    variant?: Color,
-    size?: ButtonSize,
-    round?: boolean,
-    ghost?: boolean
+import "./Button.scss";
+
+export interface ButtonExtensions {
+    Close: FC<ButtonCloseProps>,
+    
+    // TODO:
+    // Dropdown: FC<DropdownButtonProps>
+    // Icon: FC<IconButtonProps>
 }
 
-export const Button: FC<ButtonProps> = (props) => {
-    const {
+export type ButtonSize = "small" | "medium" | "large";
+
+// HTML element to render the button 
+export type ButtonAs = "button" | "span";
+
+/**
+ * T - type for `variant prop
+ */
+export interface ButtonProps<T = Color> extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
+    // FIXME: add more available elements to this prop type
+    as?: ButtonAs,
+    variant?: T,
+    size?: ButtonSize,
+    round?: boolean,
+    ghost?: boolean,
+}
+
+export const Button: FC<ButtonProps> & ButtonExtensions = (props) => {
+    const { 
         children,
-        className,
         style,
-        variant = "blue",
+        className,
+        as: Component = "button",
         size = "medium",
+        variant = "blue",
         round = false,
         ghost = false,
         ...restProps
-    } = props as ButtonProps;
+     } = props as ButtonProps;
 
     const _style = style || {};
-    const _className = classNames(
-        buttonStyle[`button`],
-        buttonStyle[`button--variant-${variant}`],
-        buttonStyle[`button--size-${size}`],
-        {
-            [buttonStyle[`button--round`]]: round,
-            [buttonStyle[`button--ghost-${variant}`]]: ghost
-        }
-    );
-    
+    const _className = composeClassName([
+        `button`,
+        `button--variant-${variant}`,
+        `button--size-${size}`,
+        {className: `button--ghost-${variant}`, condition: Boolean(ghost)},
+        {className: `button--round`, condition: Boolean(round)},
+        {className: (className ?? ""), condition: Boolean(className)}
+    ]);
+
     return (
-        <button 
+        <Component
             className={_className}
             style={_style}
             {...restProps}
         >
             {children}
-        </button>
+        </Component>
     )
 }
+
+Button.Close = ButtonClose;

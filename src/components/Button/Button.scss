@@ -1,0 +1,30 @@
+@import "../../styles/_variables.scss";
+@import "./Button.mixins.scss";
+
+.button {
+    @include button_default;   
+
+    /* Prop: variant */
+    &--variant-red {@include button_variant(var(--color-red))}
+    &--variant-yellow {@include button_variant(var(--color-yellow))}
+    &--variant-green {@include button_variant(var(--color-green))}
+    &--variant-blue {@include button_variant(var(--color-blue))}
+    &--variant-purple {@include button_variant(var(--color-purple))}
+    &--variant-dark {@include button_variant(var(--color-dark))}
+
+    /* Prop: size */
+    &--size-small {@include button_size($small_button)}
+    &--size-medium {@include button_size($medium_button)}
+    &--size-large {@include button_size($large_button)}
+
+    /* Prop: round */
+    &--round {@include button_round()}
+
+    /* Prop: ghost */
+    &--ghost-red {@include button_ghost(var(--color-red))}
+    &--ghost-yellow {@include button_ghost(var(--color-yellow))}
+    &--ghost-green {@include button_ghost(var(--color-green))}
+    &--ghost-blue {@include button_ghost(var(--color-blue))}
+    &--ghost-purple {@include button_ghost(var(--color-purple))}
+    &--ghost-dark {@include button_ghost(var(--color-dark))}
+}
