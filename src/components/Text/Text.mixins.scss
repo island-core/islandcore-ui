@@ -1,0 +1,12 @@
+@mixin text_weight($weight) {
+    font-weight: $weight;
+    color: red;
+}
+
+@mixin text_italic {
+    font-style: italic;
+}
+
+@mixin text_muted {
+    color: var(--color-gray-90);
+}

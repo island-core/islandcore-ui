@@ -1,0 +1,26 @@
+@import "./Text.mixins.scss";
+
+.text {
+    /* Prop: muted */
+    &--muted {@include text_muted()}
+
+    /* Prop: italic */
+    &--italic {@include text_italic()}
+
+    /*
+     * Prop: fontWeight
+     *
+     * Generating 9 classes with pattern:
+     * `text--weight-100`
+     * `text--weight-200`
+     *  ...
+     * `text--weight-900`
+     * This is kind of a bad idea to do it like this, so we need to remake it
+    */
+    @for $i from 1 through 9 {
+        $weight: 100px * $i;
+        .text--weight-#{calc($i * 100)} { 
+            @include text_weight($weight);
+        }
+    }
+}
